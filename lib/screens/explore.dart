@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-/* Credits to: rajayogan for design and idea: 
-https://github.com/rajayogan/flutterui-minimaldesigns/blob/master/lib/main.dart 
+/* Credits to: rajayogan for design and idea for cards: 
+https://github.com/rajayogan/flutterui-minimaldesigns/blob/master/lib/main.dart
+
+
 
 Modified by Jack Hoang
 */
@@ -13,9 +15,13 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: new Drawer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -29,18 +35,24 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.black,
-          iconSize: 17.0,
-          onPressed: () {},
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu),
+              color: Colors.black,
+              iconSize: 17.0,
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.add_box),
-              color: Colors.black,
-              iconSize: 17.0,
-              onPressed: () {})
+            icon: Icon(Icons.add_box),
+            color: Colors.black,
+            iconSize: 17.0,
+            onPressed: () {},
+          )
         ],
       ),
       // This is handled by the search bar itself.
@@ -58,12 +70,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ],
             ),
           ),
-          buildFloatingSearchBar()
+          buildFloatingSearchBar(),
         ],
       ),
     );
   }
 
+  // Search bar widget
   Widget buildFloatingSearchBar() {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
@@ -117,6 +130,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     );
   }
 
+  // Row widget for each card
   Widget row(String imgPath1, String imgPath2) {
     return Container(
       alignment: Alignment.topCenter,
