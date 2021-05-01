@@ -2,7 +2,10 @@
     package="com.example.findmypet">
    <application
         android:label="findmypet"
+                        android:requestLegacyExternalStorage="true"
+
         android:icon="@mipmap/ic_launcher">
+        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
