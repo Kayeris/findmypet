@@ -34,7 +34,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
             color: Colors.black,
           ),
         ),
-        centerTitle: true,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -46,6 +45,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             );
           },
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.add_box),
@@ -83,7 +83,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
     return FloatingSearchBar(
       borderRadius: BorderRadius.circular(12),
+      //title: Container(),
       height: 38,
+      leadingActions: [Container()],
       margins: const EdgeInsets.only(top: 1, left: 15, right: 15),
       hint: 'Search...',
       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
@@ -93,6 +95,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       axisAlignment: isPortrait ? 0.0 : -1.0,
       openAxisAlignment: 0.0,
       width: isPortrait ? 600 : 500,
+      automaticallyImplyDrawerHamburger: false,
       debounceDelay: const Duration(milliseconds: 500),
       onQueryChanged: (query) {
         // Call your model, bloc, controller here.
