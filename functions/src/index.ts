@@ -3,8 +3,6 @@ import * as functions from 'firebase-functions';
 import Keys from "./keys";
 //import admin from 'firebase-admin';
 import firebase from 'firebase/app';
-import admin from 'firebase-admin';
-import serviceAccount from './admin.json';
 
 require("firebase/database");
 
@@ -12,29 +10,11 @@ require("firebase/auth");
 require("firebase/storage");
 
 
-
-
 import express from "express";
 
 
 const app = express();
 
-let params = {
-    type: serviceAccount.type,
-    projectId: serviceAccount.project_id,
-    privateKeyId: serviceAccount.private_key_id,
-    privateKey: serviceAccount.private_key,
-    clientEmail: serviceAccount.client_email,
-    clientId: serviceAccount.client_id,
-    authUri: serviceAccount.auth_uri,
-    tokenUri: serviceAccount.token_uri,
-    authProviderX509CertUrl: serviceAccount.auth_provider_x509_cert_url,
-    clientC509CertUrl: serviceAccount.client_x509_cert_url
-}
-admin.initializeApp({
-    credential: admin.credential.cert(params),
-    databaseURL: "https://findmypet-312403-default-rtdb.firebaseio.com"
-});
 
 //tsc - w
 //find a way to enter firebase init emulators and choose db & functions
@@ -97,7 +77,7 @@ app.get('/search', async (req, res) => {
     let array: any[] = []
     let userId: any = req.query.userId;
     let userIdArr: any[] = [];
-    
+
     ref.orderByChild("creationTime").once('value').then((async function (snapshot) {
         if (!snapshot.exists()) { return res.json(array) }
 
@@ -130,7 +110,47 @@ app.get('/search', async (req, res) => {
     })).catch(() => { res.json({ "data": false }) })
 
 
+    return;
+});
 
+
+
+
+
+app.get('/viewPost', async (req, res) => {
+
+
+
+    let id: any = req.query.id;
+    if (id == null) { return res.json({ data: false, message: "You need to pass the id" }) }
+    let ref = firebase.database().ref("Posts");
+
+    ref.orderByChild("creationTime").once('value').then((async function (snapshot) {
+        if (!snapshot.exists()) {
+            console.log("empoty");
+
+            return res.json({})
+        }
+        else {
+            let data: any;
+            snapshot.forEach(function (snapshot) {
+
+                let childData = snapshot.val()
+
+                if (childData["id"] == id) {
+                    data = childData
+                }
+
+
+
+            });
+            if (data == null) {
+                return res.json({ "data": false, message: "No Such id in the database" })
+            }
+            return res.json(data);
+
+        }
+    })).catch(() => { res.json({ "data": false }) })
 
 
     return;
@@ -139,30 +159,6 @@ app.get('/search', async (req, res) => {
 
 
 
-
-
-/*
-const findKeyByEmail = async function (ref: firebase.database.Reference, user: string): Promise<string> {
-    let key: string = "";
-    await ref.get().then((function (snapshot) {
-
-        if (snapshot.exists()) {
-            snapshot.forEach(function (snapshot) {
-
-                let childData = snapshot.val()
-                if (user == childData["user"]) {
-                    key = (snapshot.key) as string
-                }
-            });
-        }
-
-    }))
-    if (key == "")
-        console.log("user: " + user + " does not exist")
-    return key;
-
-}
-*/
 const getNewId = async function (ref: firebase.database.Reference, increment = true): Promise<number> {
 
     let num: number = 1
@@ -186,4 +182,4 @@ const getNewId = async function (ref: firebase.database.Reference, increment = t
 }
 
 
-exports.widgets = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);
