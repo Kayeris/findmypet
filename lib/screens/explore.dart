@@ -21,7 +21,31 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: new Drawer(),
+      drawer: Container(
+        width: MediaQuery.of(context).size.width / 1.7,
+        child: Drawer(
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                child: Text('James Smith'),
+                decoration: BoxDecoration(color: Color(0xFF91BDF3)),
+              ),
+              ListTile(
+                title: Text('Profile'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Discover'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Sign Out'),
+                onTap: () {},
+              )
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
