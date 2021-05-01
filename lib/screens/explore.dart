@@ -35,16 +35,29 @@ class _ExploreScreenState extends State<ExploreScreen> {
           iconSize: 17.0,
           onPressed: () {},
         ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add_box),
+              color: Colors.black,
+              iconSize: 17.0,
+              onPressed: () {})
+        ],
       ),
       // This is handled by the search bar itself.
       resizeToAvoidBottomInset: false,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SizedBox(
-            height: 25.0,
+          Container(
+            margin: const EdgeInsets.only(top: 60),
+            child: ListView(
+              children: [
+                row('images/dog1.jpg', 'images/dog2.jpg'),
+                row('images/dog3.jpg', 'images/dog4.jpg'),
+                row('images/dog5.jpg', 'images/dog6.jpg'),
+              ],
+            ),
           ),
-          row('images/dog1.jpg', 'images/dog2.jpg'),
           buildFloatingSearchBar()
         ],
       ),
@@ -106,40 +119,83 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   Widget row(String imgPath1, String imgPath2) {
     return Container(
-      height: 125.0,
-      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      alignment: Alignment.topCenter,
+      padding: EdgeInsets.only(left: 20.0, right: 20.0),
       child: Row(
         children: [
           Container(
-            height: 125.0,
-            width: (MediaQuery.of(context).size.width - 100.0) / 2,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                    image: AssetImage(imgPath1), fit: BoxFit.cover)),
-          ),
-          Container(
-            height: 125.0,
-            width: (MediaQuery.of(context).size.width - 100.0) / 2,
+            height: 250.0,
+            width: (MediaQuery.of(context).size.width - 60.0) / 2,
             child: Column(
+              // Cross Axis Align by default is .centre. Do .start to align text to left
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: 10.0,
-                ),
                 Container(
                   height: 125.0,
-                  width: (MediaQuery.of(context).size.width - 30 / 2),
-                  child: Container(
-                    height: 250.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        image: DecorationImage(
-                            image: AssetImage(imgPath2), fit: BoxFit.cover)),
-                  ),
-                )
+                  width: (MediaQuery.of(context).size.width - 60.0) / 2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                          image: AssetImage(imgPath1), fit: BoxFit.cover)),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Louie",
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Last Seen on 04/30/2021',
+                  style: TextStyle(fontFamily: 'Montserrat'),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '#dog #lost #toronto #lostdog',
+                  style: TextStyle(fontFamily: 'Montserrat'),
+                ),
               ],
             ),
-          )
+          ),
+          SizedBox(width: 20.0),
+          Container(
+            height: 250.0,
+            width: (MediaQuery.of(context).size.width - 60.0) / 2,
+            child: Column(
+              // Cross Axis Align by default is .centre. Do .start to align text to left
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 125.0,
+                  width: (MediaQuery.of(context).size.width - 60.0) / 2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                          image: AssetImage(imgPath2), fit: BoxFit.cover)),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Lexi",
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Last Seen on 04/15/2021',
+                  style: TextStyle(fontFamily: 'Montserrat'),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '#dog #lost #toronto #lostdog #jackrussel',
+                  style: TextStyle(fontFamily: 'Montserrat'),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
