@@ -93,25 +93,47 @@ app.post('/inputForm', async (req, res) => {
 
 app.get('/search', async (req, res) => {
 
-    let ref = firebase.database().ref();
+    let ref = firebase.database().ref("Posts");
+    let array: any[] = []
+    let userId: any = req.query.userId;
+    let userIdArr: any[] = [];
+    
+    ref.orderByChild("creationTime").once('value').then((async function (snapshot) {
+        if (!snapshot.exists()) { return res.json(array) }
 
-    if (req.query.userId == null) {
-        ref.child('Posts').orderByChild("creationTime").get().then((function (snapshot) {
-            if (!snapshot.exists()) { res.json([]) }
-            else {
-                snapshot.forEach(function (snapshot) {
+        else {
+            snapshot.forEach(function (snapshot) {
 
-                    let childData = snapshot.val()
-                    console.log(childData);
-                });
+                let childData = snapshot.val()
+                if (userId == null) {
+                    array.push(childData)
+                }
 
-                res.json({ "data": true })
-            }
-        }))
+                if (userId != null) {
+                    if (childData["userId"] == userId) {
+                        userIdArr.push(childData);
+                    }
+                    else {
+                        array.push(childData)
 
-    }
+                    }
+                }
 
-    return
+            });
+            userIdArr.reverse();
+            array.reverse()
+            Array.prototype.push.apply(userIdArr, array);
+
+            return res.json(userIdArr)
+
+        }
+    })).catch(() => { res.json({ "data": false }) })
+
+
+
+
+
+    return;
 });
 
 
