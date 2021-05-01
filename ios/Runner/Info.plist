@@ -19,6 +19,16 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
+
+
+
+<key>NSCameraUsageDescription</key>
+	<string>Open Camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Open microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pet finder would like access to your photo library</string>
+
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

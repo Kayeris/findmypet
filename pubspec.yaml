@@ -23,6 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  image_picker: 0.6.7
+  image_cropper: ^1.4.0 #? null safety
+  gcloud: ^0.7.0
+  googleapis_auth: 0.2.12
+
   material_floating_search_bar: ^0.3.4
 
 
@@ -56,6 +62,8 @@ flutter:
     - images/dog4.jpg
     - images/dog5.jpg
     - images/dog6.jpg
+    - assets/my-project.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
