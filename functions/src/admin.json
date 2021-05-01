@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "findmypet-312403",
+    "private_key_id": "e034b6598980c2b91bfee1459183ae0b47d33854",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCSemkJlFgVMJMX\n2kZelAw1CBthiQe09nvyoVS1yc8zkSqa/Fv71M6woVFUQFowlJE05+12IWlJcvJJ\nOunocpf2PH7spkCRL+mPuqY3cLN/VkD3Pt69/VQVjQTev0qTFQN3QOLpwSBEqknh\nh6sPP3nljDvko0hx88V4IpBozBRFbCIIj93jiB1PqDPTu7/58Yl8XZTaN8fo2bB9\n54gNIquWmWj4k20QPYl9JUZugpq6moFwrA1WBDKveSgjjNEdxcoD845FqHU7C6Bw\nnDq79KnnNFAvgNLo3WDEyIUN9U9qIhS0OUb1nGTbPqgAK1/5QaEJ5lSu6bu+17DO\nJHzVulgxAgMBAAECggEADD823AmuqarjiYmC+7JmKOLyIyAJaGx5ZYpuojpq3BVl\nmgrCiBY9Z9A9FA3DXK93SpSfqpJVksINFulZmElIglqBhDjMSjdW0GEbN6RxJZLp\nIKL9jaYKKzkcsKEO06hcn1JqBoBSudsBDV3CBCbbAsHMWiv6yShIGOjO6Swy/7DP\n71M0DivVIiHGl8yxG50tZEKd+d44ZMhDwjd0r6UNcnWMqrobWZPrvxLJRvQjxX8w\n1GPSjAT7yUTJW5nr5lGdLh91goimQbSDhScW5uE4NoK5LE2B6xLPmVIzM4ieeEcH\ncvijvNWDLc/bJC94GRjt0Xrz3purtQtvsuYhdhg+DwKBgQDEFr5adVX1LLGVdbTC\nMW6vUH2uIawrWNtDN+6ZZIa4WhIPFGQj69RiAEQGJhPZ84FrKbPtk+K7DlFXhpA2\nOdQiJTq9JCSHEcnYKfJwUzT9rr6ZFgtiFscmuZL2O/5FPDLSL6kq0+BiktlzR4L4\nPbv/4JijGsOb9yEZgAIdYb18dwKBgQC/O1NCYRioMlad64EY6b0ieQ4SkWKaV9pV\nhG0s1nQMHTQRTK8Dc4qFLykK8Po5TtH27LMrPEEbBP3sxFu54KxG9mb7OcFgWcM7\nVq7VdbUuCyURkhqJlAhR0WE3X6CPx2iUfMGxZvATyZjDYK3/kW0nBGfdGF0NOO50\nz3xElCsClwKBgDBxqf9xI5ZZv1m8ZbbgPYckbJhbi0x+PFVD+Td+RWZAIlwFXqQd\nPDAl/qhCOf9LkHqoJ+KW+Zna9K+Z+ADdkpII/pUB2+Beva4g1tt3Qw01YbMyZgeK\ntxLTIAKjWbNDJw8UZUfGZpYTz5MSZMHthoe1th/9mbvrdwr0vBEEN6sLAoGBAKIf\nYInRGX9XFdnSU+NUHjXAnW6edRLW0lJX79rogP/YLlFQSrvJU7Fv9wLAo9K8AQOv\nToKkFaobhE8bdYxTbprGwS3RnCDcWMjQx25O2WiMqEOKMxdaOedrdFjmqI/chcwF\nLI0C8RxFeE6Dg2A84WYHtSpbQmA4WOkNEpRtbT1HAoGASL48A2Yj/WrOCfZa7umD\nQDlyACiyVcgLDzjyT2MR0vU9XoeTYLj3NZ2zkpMArC+1XMZjOWJPkNt2lVXrKgCN\nDkzezSjpEZbv46HglZZqKqe2MljsKtTlVo3E0aQBrvcDyl6Ie2OY/h6Jjo+q9KU+\ncIDOp6f9tW8KTOQdxTsKI/w=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-64s8t@findmypet-312403.iam.gserviceaccount.com",
+    "client_id": "116259483463220745153",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-64s8t%40findmypet-312403.iam.gserviceaccount.com"
+}
