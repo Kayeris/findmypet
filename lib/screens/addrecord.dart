@@ -28,6 +28,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
       String petName,
       String userId,
       String hashtags) {
+    print(id);
     return http.post(
       Uri.https(
           'us-central1-findmypet-312403.cloudfunctions.net', 'api/inputForm'),
@@ -271,19 +272,19 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                       onPrimary: Colors.white, // foreground
                     ),
                     child: Text('SUBMIT'),
-                    onPressed: () {
+                    onPressed: () async {
                       print('Pressed');
-                      createPost(
-                          'description',
-                          'id',
+                      await createPost(
+                          'Lost him on 12/12/20',
+                          '10',
                           'image',
-                          'location',
-                          'ownerEmail',
-                          'ownerName',
-                          'ownerPN',
-                          'petName',
-                          'userId',
-                          'hashtags');
+                          'Mississauga',
+                          'jack_hoang@hotmail.com',
+                          'Jack Hoang',
+                          '4168273245',
+                          'Charlie',
+                          'jack_hoang@hotmail.com',
+                          '#dog');
                     },
                   )),
             ],
