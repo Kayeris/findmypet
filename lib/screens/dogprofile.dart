@@ -1,11 +1,43 @@
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 
 class DogProfile extends StatefulWidget {
+  String id = '1';
+  DogProfile(this.id);
+
   @override
-  _DogProfileState createState() => _DogProfileState();
+  _DogProfileState createState() => _DogProfileState(id);
 }
 
 class _DogProfileState extends State<DogProfile> {
+  _DogProfileState(this.postId);
+  final String postId;
+  final getUrl =
+      'https://us-central1-findmypet-312403.cloudfunctions.net/api/ViewPost?id=1';
+  var jsonString;
+  Map<String, dynamic> post;
+  Future<String> data;
+
+  Future<String> _jsonFromUrl() async {
+    final response = await http.get(Uri.parse(getUrl));
+    var string = response.body;
+    post = jsonDecode(string);
+
+    return string;
+  }
+
+  @override
+  void initState() {
+    _jsonFromUrl();
+    super.initState();
+    //_jsonFromUrl();
+    print('data');
+    data = _jsonFromUrl();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,46 +71,92 @@ class _DogProfileState extends State<DogProfile> {
           )
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            child: Container(
-              width: double.maxFinite,
-              color: Colors.black,
-              child: Image.asset('images/dog1.jpg'),
-            ),
-          ),
-          SizedBox(height: 20.0),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Louie",
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40.0),
+      body: FutureBuilder<String>(
+        future: data,
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            return ListView(
+              children: <Widget>[
+                Container(
+                  child: Container(
+                    width: double.maxFinite,
+                    color: Colors.black,
+                    child: Image.asset('images/dog1.jpg'),
+                  ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Last Seen on 04/30/2021',
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
-                SizedBox(height: 15.0),
-                Text(
-                    'Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis orci quam, vehicula vitae metus in, efficitur vulputate ipsum. Ut mauris lectus, malesuada a hendrerit eleifend, vestibulum sed tellus. Integer vestibulum in diam sit amet pharetra.'),
-                SizedBox(height: 15.0),
-                Text('Last Location: Chinatown, Toronto'),
-                SizedBox(height: 30.0),
-                Text(
-                  'Tags: #dog #lost #toronto #lostdog',
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
+                SizedBox(height: 20.0),
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        post['petName'],
+                        //'data',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40.0),
+                      ),
+                      SizedBox(height: 10),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Description: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: post['description']),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15.0),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Last Location: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: post['location'],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15.0),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Contact Info: \n',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            WidgetSpan(child: Icon(Icons.phone_android)),
+                            TextSpan(
+                              text: '\t' + post['ownerPN'],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15.0),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Tags: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '#dog #lost #toronto #lostdog',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
-            ),
-          )
-        ],
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }

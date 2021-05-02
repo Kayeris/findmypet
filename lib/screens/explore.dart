@@ -184,7 +184,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DogProfile()));
+                              builder: (context) => DogProfile('1')));
                     },
                   ),
                 ),
@@ -231,7 +231,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DogProfile()));
+                              builder: (context) => DogProfile('1')));
                     },
                   ),
                 ),
