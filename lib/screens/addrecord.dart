@@ -124,6 +124,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                   textAlignVertical: TextAlignVertical.top,
                   maxLength: 250,
                   maxLines: null,
+                  minLines: 4,
                   decoration: new InputDecoration(
                       border: new OutlineInputBorder(
                         borderRadius: const BorderRadius.all(
@@ -131,12 +132,11 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                         ),
                       ),
                       filled: true,
+                      hintText: "Type Here...",
                       hintStyle: new TextStyle(
                         color: Colors.grey[800],
                         fontStyle: FontStyle.italic,
-                        height: 4.0,
                       ),
-                      hintText: "Type Here...",
                       fillColor: const Color(0xFFF6E8EA)),
                 ),
               ),
@@ -247,6 +247,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                   textAlignVertical: TextAlignVertical.top,
                   maxLength: 100,
                   maxLines: null,
+                  minLines: 3,
                   decoration: new InputDecoration(
                       border: new OutlineInputBorder(
                         borderRadius: const BorderRadius.all(
@@ -257,7 +258,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                       hintStyle: new TextStyle(
                         color: Colors.grey[800],
                         fontStyle: FontStyle.italic,
-                        height: 4.0,
                       ),
                       hintText: "Ex. #goldenretriever",
                       fillColor: const Color(0xFFF6E8EA)),
