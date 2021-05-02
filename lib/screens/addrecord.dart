@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /// Flutter code sample for Form
 // This example shows a [Form] with one [TextFormField] to enter an email
 // address and an [ElevatedButton] to submit the form. A [GlobalKey] is used here
@@ -6,13 +8,47 @@
 // ![](https://flutter.github.io/assets-for-api-docs/assets/widgets/form.png)
 
 import 'package:flutter/material.dart';
+import 'package:get/get_connect.dart';
+import 'package:http/http.dart' as http;
 
-class InputForm extends StatefulWidget {
+class AddRecordScreen extends StatefulWidget {
   @override
-  _InputFormState createState() => _InputFormState();
+  _AddRecordScreenState createState() => _AddRecordScreenState();
 }
 
-class _InputFormState extends State<InputForm> {
+class _AddRecordScreenState extends State<AddRecordScreen> {
+  Future<http.Response> createPost(
+      String description,
+      String id,
+      String image,
+      String location,
+      String ownerEmail,
+      String ownerName,
+      String ownerPN,
+      String petName,
+      String userId,
+      String hashtags) {
+    return http.post(
+      Uri.https(
+          'us-central1-findmypet-312403.cloudfunctions.net', 'api/inputForm'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'description': description,
+        'id': id,
+        'image': image,
+        'location': location,
+        'ownerEmail': ownerEmail,
+        'ownerName': ownerName,
+        'ownerPN': ownerPN,
+        'petName': petName,
+        'userId': userId,
+        'hashtags': hashtags,
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,6 +88,27 @@ class _InputFormState extends State<InputForm> {
                       fillColor: const Color(0xFFF6E8EA)),
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Image of Pet",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent, // background
+                      onPrimary: Colors.white, // foreground
+                    ),
+                    child: Text('UPLOAD'),
+                    onPressed: () {
+                      print('Pressed');
+                    },
+                  )),
               Container(
                 margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
                 child: Text(
@@ -206,6 +263,29 @@ class _InputFormState extends State<InputForm> {
                       fillColor: const Color(0xFFF6E8EA)),
                 ),
               ),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent, // background
+                      onPrimary: Colors.white, // foreground
+                    ),
+                    child: Text('SUBMIT'),
+                    onPressed: () {
+                      print('Pressed');
+                      createPost(
+                          'description',
+                          'id',
+                          'image',
+                          'location',
+                          'ownerEmail',
+                          'ownerName',
+                          'ownerPN',
+                          'petName',
+                          'userId',
+                          'hashtags');
+                    },
+                  )),
             ],
           )),
     );
