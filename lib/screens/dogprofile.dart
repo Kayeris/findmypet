@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class _DogProfileState extends State<DogProfile> {
                     height: (MediaQuery.of(context).size.height - 75.0) / 2,
                     width: double.maxFinite,
                     color: Colors.black,
-                    child: Image.asset('images/dog1.jpg', fit: BoxFit.cover),
+                    child: Image.network(post['image'], fit: BoxFit.cover),
                   ),
                 ),
                 SizedBox(height: 20.0),
