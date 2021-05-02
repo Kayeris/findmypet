@@ -1,10 +1,9 @@
+import 'package:findmypet/screens/dogprofile.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 /* Credits to: rajayogan for design and idea for cards: 
 https://github.com/rajayogan/flutterui-minimaldesigns/blob/master/lib/main.dart
-
-
 
 Modified by Jack Hoang
 */
@@ -172,12 +171,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 125.0,
-                  width: (MediaQuery.of(context).size.width - 60.0) / 2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                          image: AssetImage(imgPath1), fit: BoxFit.cover)),
+                  child: InkWell(
+                    child: Container(
+                      height: 125.0,
+                      width: (MediaQuery.of(context).size.width - 60.0) / 2,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                              image: AssetImage(imgPath1), fit: BoxFit.cover)),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DogProfile()));
+                    },
+                  ),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -209,12 +218,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 125.0,
-                  width: (MediaQuery.of(context).size.width - 60.0) / 2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                          image: AssetImage(imgPath2), fit: BoxFit.cover)),
+                  child: InkWell(
+                    child: Container(
+                      height: 125.0,
+                      width: (MediaQuery.of(context).size.width - 60.0) / 2,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                              image: AssetImage(imgPath2), fit: BoxFit.cover)),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DogProfile()));
+                    },
+                  ),
                 ),
                 SizedBox(height: 10),
                 Text(
