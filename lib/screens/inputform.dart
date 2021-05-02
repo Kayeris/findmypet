@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 /// Flutter code sample for Form
 
 // This example shows a [Form] with one [TextFormField] to enter an email
@@ -7,6 +11,9 @@
 // ![](https://flutter.github.io/assets-for-api-docs/assets/widgets/form.png)
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:json_serializable/builder.dart';
 
 class InputForm extends StatefulWidget {
   @override
@@ -53,6 +60,27 @@ class _InputFormState extends State<InputForm> {
                       fillColor: const Color(0xFFF6E8EA)),
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Image of Pet",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent, // background
+                      onPrimary: Colors.white, // foreground
+                    ),
+                    child: Text('UPLOAD'),
+                    onPressed: () {
+                      print('Pressed');
+                    },
+                  )),
               Container(
                 margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
                 child: Text(

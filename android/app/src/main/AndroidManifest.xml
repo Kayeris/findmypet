@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.findmypet">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="findmypet"
                         android:requestLegacyExternalStorage="true"

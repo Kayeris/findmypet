@@ -3,7 +3,6 @@ import 'package:findmypet/screens/inputform.dart';
 import 'package:findmypet/screens/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'bloc/api.dart';
 
 void main() {
