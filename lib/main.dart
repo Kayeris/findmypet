@@ -1,4 +1,6 @@
 import 'package:findmypet/screens/explore.dart';
+import 'package:findmypet/screens/inputform.dart';
+import 'package:findmypet/screens/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +21,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExploreScreen(),
+      home: LandingPage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
 
   final String title;
 
