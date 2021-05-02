@@ -53,6 +53,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           backgroundColor: const Color(0xFFFB9D88),
           appBar: AppBar(

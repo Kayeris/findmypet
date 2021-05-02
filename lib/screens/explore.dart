@@ -275,7 +275,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 ///TODO FUNCTION TO TURN LIST INTO HASHTAGS
                 Text(
                   model.hashtags.length == 0
-                      ? "implement hashtags \n hashtags hashtags hashtags hashtagss"
+                      ? "#dog #lostdog #toronto #lostdogtoronto"
                       : model.hashtags,
                   style: TextStyle(fontFamily: 'Montserrat'),
                 ),
