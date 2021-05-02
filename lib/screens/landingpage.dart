@@ -8,7 +8,6 @@ import 'package:findmypet/screens/explore.dart';
 // ![](https://flutter.github.io/assets-for-api-docs/assets/widgets/form.png)
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// This is the main application widget.
 class LandingPage extends StatefulWidget {
@@ -18,6 +17,9 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+
+  bool isSignIn = false;
+  bool google = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +94,10 @@ class _LandingPageState extends State<LandingPage> {
               ElevatedButton(
                 child: Text('SIGN IN'),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ExploreScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExploreScreen(null)));
                 },
               )
             ],

@@ -24,10 +24,15 @@ dependencies:
   flutter:
     sdk: flutter
     
-  image_picker: 0.6.7
+  image_picker: ^0.6.7
   image_cropper: ^1.4.0 #? null safety
-  gcloud: ^0.7.0
-  googleapis_auth: 0.2.12
+  gcloud: ^0.7.2
+  googleapis_auth: ^0.2.10
+  firebase_auth: ^0.20.1
+  google_sign_in: ^4.4.6
+  firebase_core: ^0.7.0
+ 
+  
 
   material_floating_search_bar: ^0.3.4
 
@@ -66,7 +71,8 @@ flutter:
     - images/dog6.jpg
     - assets/my-project.json
     - images/logo.png
-    - images/user.jpg
+    - images/user.png
+    - images/google_logo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

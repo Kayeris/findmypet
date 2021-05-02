@@ -1,7 +1,10 @@
+import 'package:findmypet/auth/authentication.dart';
 import 'package:findmypet/bloc/api.dart';
 import 'package:findmypet/bloc/profile_model.dart';
 import 'package:findmypet/screens/dogprofile.dart';
 import 'package:findmypet/screens/landingpage.dart';
+import 'package:findmypet/screens/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -13,6 +16,9 @@ Modified by Jack Hoang
 */
 
 class ExploreScreen extends StatefulWidget {
+  User user;
+  ExploreScreen(this.user);
+
   @override
   _ExploreScreenState createState() => _ExploreScreenState();
 }
@@ -20,6 +26,7 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final API api = Get.put(API());
+  bool _isSigningOut = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +46,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           height: 120.0,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100.00),
-                            child: Image.asset('images/user.jpg'),
+                            child: Image.asset('images/user.png'),
                           )),
                       SizedBox(height: 10.0),
-                      Text('James Smith')
+                      Text(widget.user.displayName)
                     ],
                   ),
                   decoration: BoxDecoration(color: Color(0xFF91BDF3)),
@@ -55,16 +62,26 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ListTile(
                 title: Text('Discover'),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ExploreScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExploreScreen(widget.user)));
                 },
               ),
               ListTile(
                 title: Text('Sign Out'),
-                onTap: () {
-                  // TO DO: POP
+                onTap: () async {
+                  setState(() {
+                    _isSigningOut = true;
+                  });
+
+                  await Authentication.signOut();
+                  setState(() {
+                    _isSigningOut = false;
+                  });
+
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LandingPage()));
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
               )
             ],
