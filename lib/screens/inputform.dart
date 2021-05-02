@@ -21,6 +21,18 @@ class InputForm extends StatefulWidget {
 }
 
 class _InputFormState extends State<InputForm> {
+  Future<http.Response> _jsontoURL(String title) {
+    return http.post(
+      Uri.https('jsonplaceholder.typicode.com', 'albums'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'title': title,
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -235,6 +247,18 @@ class _InputFormState extends State<InputForm> {
                       fillColor: const Color(0xFFF6E8EA)),
                 ),
               ),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent, // background
+                      onPrimary: Colors.white, // foreground
+                    ),
+                    child: Text('SUBMIT'),
+                    onPressed: () {
+                      print('Pressed');
+                    },
+                  )),
             ],
           )),
     );
