@@ -79,9 +79,10 @@ class _DogProfileState extends State<DogProfile> {
               children: <Widget>[
                 Container(
                   child: Container(
+                    height: (MediaQuery.of(context).size.height - 75.0) / 2,
                     width: double.maxFinite,
                     color: Colors.black,
-                    child: Image.asset('images/dog1.jpg'),
+                    child: Image.asset('images/dog1.jpg', fit: BoxFit.cover),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -128,10 +129,16 @@ class _DogProfileState extends State<DogProfile> {
                             TextSpan(
                                 text: 'Contact Info: \n',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
+                            WidgetSpan(child: Icon(Icons.person)),
+                            TextSpan(
+                              text: '\t' + post['ownerName'] + '\n',
+                            ),
                             WidgetSpan(child: Icon(Icons.phone_android)),
                             TextSpan(
-                              text: '\t' + post['ownerPN'],
+                              text: '\t' + post['ownerPN'] + '\n',
                             ),
+                            WidgetSpan(child: Icon(Icons.email)),
+                            TextSpan(text: '\t' + post['ownerEmail'])
                           ],
                         ),
                       ),
