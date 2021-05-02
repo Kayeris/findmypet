@@ -1,6 +1,7 @@
 # Requirements: fastbook, import PIL, from PIL import Image, import requests, from io import BytesIO, import numpy,
 import fastbook
 from fastbook import *
+import urllib
 # from fastai.basic_train import load_learner
 # import fastai
 # from fastai.vision import *
@@ -20,16 +21,22 @@ def load_model(the_path):
 def prediction(image_file, the_path):
     import PIL
     from PIL import Image
+
     # import Image
     import requests
     from io import BytesIO
+
     import numpy
 
     import json
+
     breed_classify = load_model(the_path)
+    print("load3")
 
     url = image_file
     response = requests.get(url)
+    print("load3")
+
     imgg = Image.open(BytesIO(response.content))
 
     pix = numpy.array(imgg)
