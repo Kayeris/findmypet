@@ -8,73 +8,207 @@
 
 import 'package:flutter/material.dart';
 
-/// This is the main application widget.
-class InputForm extends StatelessWidget {
-  const InputForm({Key? key}) : super(key: key);
+class InputForm extends StatefulWidget {
+  @override
+  _InputFormState createState() => _InputFormState();
+}
 
-  static const String _title = 'File A Report';
-
+class _InputFormState extends State<InputForm> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
-      theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFFFB9D88)),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(_title),
-          backgroundColor: const Color(0xFFF97D62),
-        ),
-        body: const MyStatefulWidget(),
-      ),
-    );
-  }
-}
-
-/// This is the stateful widget that the main application instantiates.
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-/// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter your email',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          backgroundColor: const Color(0xFFFB9D88),
+          appBar: AppBar(
+            title: Text("File A Report"),
+            centerTitle: true,
+            backgroundColor: const Color(0xFFF97D62),
+            foregroundColor: const Color(0xFFF5F5F5),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
-                if (_formKey.currentState!.validate()) {
-                  // Process data.
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ),
-        ],
-      ),
+          body: ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Name of Pet",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                          color: Colors.grey[800], fontStyle: FontStyle.italic),
+                      hintText: "Ex. Mr.Snowbell",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Short Description of Pet",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  textAlignVertical: TextAlignVertical.top,
+                  maxLength: 250,
+                  maxLines: null,
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                        color: Colors.grey[800],
+                        fontStyle: FontStyle.italic,
+                        height: 4.0,
+                      ),
+                      hintText: "Type Here...",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Last Seen Location",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                          color: Colors.grey[800], fontStyle: FontStyle.italic),
+                      hintText: "Ex. Missisauga, XX Street",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Owner's Name",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                          color: Colors.grey[800], fontStyle: FontStyle.italic),
+                      hintText: "Ex. John Smith",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Owner's Contact Information",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                          color: Colors.grey[800], fontStyle: FontStyle.italic),
+                      hintText: "Phone Number",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                          color: Colors.grey[800], fontStyle: FontStyle.italic),
+                      hintText: "Email Address",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Text(
+                  "Tags",
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xFFF5F5F5)),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                child: TextFormField(
+                  textAlignVertical: TextAlignVertical.top,
+                  maxLength: 100,
+                  maxLines: null,
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0),
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(
+                        color: Colors.grey[800],
+                        fontStyle: FontStyle.italic,
+                        height: 4.0,
+                      ),
+                      hintText: "Ex. #goldenretriever",
+                      fillColor: const Color(0xFFF6E8EA)),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
