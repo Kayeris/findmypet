@@ -13,7 +13,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  final API api = Get.put(API());
+  // final API api = Get.put(API());
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LandingPage(),
+      home: InputForm(),
     );
   }
 }
