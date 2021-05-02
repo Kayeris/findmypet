@@ -5,23 +5,21 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class DogProfile extends StatefulWidget {
-  String id = '1';
+  final int id;
   DogProfile(this.id);
 
   @override
-  _DogProfileState createState() => _DogProfileState(id);
+  _DogProfileState createState() => _DogProfileState();
 }
 
 class _DogProfileState extends State<DogProfile> {
-  _DogProfileState(this.postId);
-  final String postId;
-  final getUrl =
-      'https://us-central1-findmypet-312403.cloudfunctions.net/api/ViewPost?id=1';
   var jsonString;
   Map<String, dynamic> post;
   Future<String> data;
 
   Future<String> _jsonFromUrl() async {
+    final getUrl =
+        'https://us-central1-findmypet-312403.cloudfunctions.net/api/ViewPost?id=${widget.id}';
     final response = await http.get(Uri.parse(getUrl));
     var string = response.body;
     post = jsonDecode(string);

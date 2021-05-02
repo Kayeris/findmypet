@@ -1,5 +1,8 @@
 import 'package:findmypet/screens/explore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'bloc/api.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,6 +11,8 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
+  final API api = Get.put(API());
+
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
