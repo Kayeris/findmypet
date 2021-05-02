@@ -1,5 +1,8 @@
+import 'package:findmypet/bloc/api.dart';
+import 'package:findmypet/bloc/profile_model.dart';
 import 'package:findmypet/screens/dogprofile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 /* Credits to: rajayogan for design and idea for cards: 
@@ -15,6 +18,7 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final API api = Get.put(API());
 
   @override
   Widget build(BuildContext context) {
@@ -80,22 +84,43 @@ class _ExploreScreenState extends State<ExploreScreen> {
       ),
       // This is handled by the search bar itself.
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 60),
-            child: ListView(
-              children: [
-                row('images/dog1.jpg', 'images/dog2.jpg'),
-                row('images/dog3.jpg', 'images/dog4.jpg'),
-                row('images/dog5.jpg', 'images/dog6.jpg'),
-              ],
-            ),
-          ),
-          buildFloatingSearchBar(),
-        ],
-      ),
+      body: Container(
+          child: GetBuilder(
+              initState: (_) {
+                Get.find<API>().search();
+              },
+              builder: (API bloc) => bloc.searchList.isEmpty
+                  ? Container()
+                  : Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 60),
+                          child: CustomScrollView(
+                            slivers: [
+                              SliverGrid(
+                                gridDelegate:
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                  //TODO ADJUST WIDTH ? I MESSED UP
+
+                                  maxCrossAxisExtent:
+                                      MediaQuery.of(context).size.width / 2,
+                                  //TODO ADJUST HEIGHT? I MESSED UP
+
+                                  mainAxisSpacing: 0,
+                                  childAspectRatio: 0.7,
+                                ),
+                                delegate:
+                                    SliverChildBuilderDelegate((context, i) {
+                                  return row(bloc.searchList[i]);
+                                }, childCount: (bloc.searchList.length).ceil()),
+                              )
+                            ],
+                          ),
+                        ),
+                        buildFloatingSearchBar(),
+                      ],
+                    ))),
     );
   }
 
@@ -157,7 +182,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   // Row widget for each card
-  Widget row(String imgPath1, String imgPath2) {
+  Widget row(ProfileModel model) {
     return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -165,7 +190,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         children: [
           Container(
             height: 250.0,
-            width: (MediaQuery.of(context).size.width - 60.0) / 2,
+            width: (MediaQuery.of(context).size.width - 100) / 2,
             child: Column(
               // Cross Axis Align by default is .centre. Do .start to align text to left
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,23 +199,24 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   child: InkWell(
                     child: Container(
                       height: 125.0,
-                      width: (MediaQuery.of(context).size.width - 60.0) / 2,
+                      width: (MediaQuery.of(context).size.width - 100) / 2,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
-                              image: AssetImage(imgPath1), fit: BoxFit.cover)),
+                              image: NetworkImage(model.image),
+                              fit: BoxFit.cover)),
                     ),
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DogProfile('1')));
+                              builder: (context) => DogProfile(model.id)));
                     },
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Louie",
+                  model.petName,
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
@@ -198,59 +224,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Last Seen on 04/30/2021',
+                  model.creationTime.toString(),
                   style: TextStyle(fontFamily: 'Montserrat'),
                 ),
                 SizedBox(height: 10),
+
+                ///TODO FUNCTION TO TURN LIST INTO HASHTAGS
                 Text(
-                  '#dog #lost #toronto #lostdog',
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 20.0),
-          Container(
-            height: 250.0,
-            width: (MediaQuery.of(context).size.width - 60.0) / 2,
-            child: Column(
-              // Cross Axis Align by default is .centre. Do .start to align text to left
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  child: InkWell(
-                    child: Container(
-                      height: 125.0,
-                      width: (MediaQuery.of(context).size.width - 60.0) / 2,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                              image: AssetImage(imgPath2), fit: BoxFit.cover)),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DogProfile('1')));
-                    },
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  "Lexi",
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Last Seen on 04/15/2021',
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  '#dog #lost #toronto #lostdog #jackrussel',
+                  model.hashtags.length == 0
+                      ? "implement hashtags \n hashtags hashtags hashtags hashtagss"
+                      : model.hashtags,
                   style: TextStyle(fontFamily: 'Montserrat'),
                 ),
               ],
