@@ -1,9 +1,6 @@
-import 'package:findmypet/auth/authentication.dart';
 import 'package:findmypet/bloc/api.dart';
 import 'package:findmypet/bloc/profile_model.dart';
-import 'package:findmypet/screens/addrecord.dart';
 import 'package:findmypet/screens/dogprofile.dart';
-import 'package:findmypet/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +15,6 @@ Modified by Jack Hoang
 class ExploreScreen extends StatefulWidget {
   User user;
   ExploreScreen(this.user);
-
   @override
   _ExploreScreenState createState() => _ExploreScreenState();
 }
@@ -26,7 +22,6 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final API api = Get.put(API());
-  bool _isSigningOut = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +32,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
         child: Drawer(
           child: ListView(
             children: <Widget>[
-              Container(
-                height: 200.0,
-                child: DrawerHeader(
-                  child: Column(
-                    children: [
-                      Container(
-                          height: 120.0,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100.00),
-                            child: Image.asset('images/user.png'),
-                          )),
-                      SizedBox(height: 10.0),
-                      Text(widget.user.displayName)
-                    ],
-                  ),
-                  decoration: BoxDecoration(color: Color(0xFF91BDF3)),
-                ),
+              DrawerHeader(
+                child: Text('James Smith'),
+                decoration: BoxDecoration(color: Color(0xFF91BDF3)),
               ),
               ListTile(
                 title: Text('Profile'),
@@ -61,28 +42,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
               ListTile(
                 title: Text('Discover'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExploreScreen(widget.user)));
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('Sign Out'),
-                onTap: () async {
-                  setState(() {
-                    _isSigningOut = true;
-                  });
-
-                  await Authentication.signOut();
-                  setState(() {
-                    _isSigningOut = false;
-                  });
-
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
+                onTap: () {},
               )
             ],
           ),
@@ -117,10 +81,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             icon: Icon(Icons.add_box),
             color: Colors.black,
             iconSize: 17.0,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddRecordScreen()));
-            },
+            onPressed: () {},
           )
         ],
       ),
@@ -186,7 +147,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
       openAxisAlignment: 0.0,
       width: isPortrait ? 600 : 500,
       automaticallyImplyDrawerHamburger: false,
-      automaticallyImplyBackButton: false,
       debounceDelay: const Duration(milliseconds: 500),
       onQueryChanged: (query) {
         // Call your model, bloc, controller here.
@@ -273,12 +233,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 SizedBox(height: 10),
 
                 ///TODO FUNCTION TO TURN LIST INTO HASHTAGS
-                Text(
-                  model.hashtags.length == 0
-                      ? "implement hashtags \n hashtags hashtags hashtags hashtagss"
-                      : model.hashtags,
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
+
+                model.hashtags.length == 0
+                    ? Container()
+                    : Text(
+                        model.hashtags,
+                        style: TextStyle(fontFamily: 'Montserrat'),
+                      ),
               ],
             ),
           ),

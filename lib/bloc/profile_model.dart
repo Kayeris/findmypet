@@ -9,7 +9,7 @@ class ProfileModel {
   final String ownerPN;
   final String petName;
   final String userId;
-  final List<String> hashtags;
+  final String hashtags;
 
   ProfileModel(
       {this.creationTime,
@@ -22,7 +22,7 @@ class ProfileModel {
       this.ownerPN,
       this.petName,
       this.userId,
-      this.hashtags});
+      this.hashtags = " "});
 
   factory ProfileModel.fromJson(dynamic json) {
     return ProfileModel(
@@ -36,6 +36,6 @@ class ProfileModel {
         ownerPN: json["ownerPN"],
         petName: json["petName"],
         userId: json["userId"],
-        hashtags: json['hashtags'] ?? []);
+        hashtags: json['hashtags'] ?? " ");
   }
 }

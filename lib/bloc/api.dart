@@ -17,5 +17,19 @@ class API extends GetxController {
     update();
   }
 
+  Future<String> getTag(String end) async {
+    String url = "https://petify-uo2evf6gfq-uc.a.run.app/petify?img=$end";
+    final response = await http.get(url);
+
+    print(response.body.toString());
+
+    var res = json.decode(response.body);
+    String animal = res["animal"][0];
+    String prediction = res["prediction"][0];
+
+    update();
+    return "#" + animal + " #" + prediction;
+  }
+
   Future<void> viewPost(String id) async {}
 }
