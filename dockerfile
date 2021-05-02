@@ -14,11 +14,31 @@ RUN pip install pillow
 RUN pip install fastbook
 
 
+RUN pip install Flask gunicorn
 
-# #RUN /bin/bash
-# RUN git clone https://github.com/fastai/fastai.git --depth 1  && git clone https://github.com/fastai/fastcore.git --depth 1
-# RUN /bin/bash -c "if [[ $BUILD == 'course' ]] ; then echo \"Course Build\" && cd fastai && pip install . && cd ../fastcore && pip install . && cd .. && git clone https://github.com/fastai/fastbook --depth 1 && git clone https://github.com/fastai/course-v4 --depth 1; fi"
+
+
+
+
+
+
 
 COPY . . 
 
-CMD [ "python", "predicting.py" ]
+
+
+
+EXPOSE 5000
+ENV PORT 5000
+
+
+
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1" ,"--threads", "8", "--timeout", "0" ,"predicting:app"]
+
+
+#docker run --rm predicting:3.6  -a key
+
+
+# nodejs endpoint -> communicates with python -> returns value container as a file -> nodejs sends to url
+
