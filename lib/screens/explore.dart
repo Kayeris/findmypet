@@ -1,8 +1,8 @@
 import 'package:findmypet/auth/authentication.dart';
 import 'package:findmypet/bloc/api.dart';
 import 'package:findmypet/bloc/profile_model.dart';
+import 'package:findmypet/screens/addrecord.dart';
 import 'package:findmypet/screens/dogprofile.dart';
-import 'package:findmypet/screens/landingpage.dart';
 import 'package:findmypet/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -117,7 +117,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
             icon: Icon(Icons.add_box),
             color: Colors.black,
             iconSize: 17.0,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddRecordScreen()));
+            },
           )
         ],
       ),
