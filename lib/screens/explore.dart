@@ -1,6 +1,7 @@
 import 'package:findmypet/bloc/api.dart';
 import 'package:findmypet/bloc/profile_model.dart';
 import 'package:findmypet/screens/dogprofile.dart';
+import 'package:findmypet/screens/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -29,9 +30,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
         child: Drawer(
           child: ListView(
             children: <Widget>[
-              DrawerHeader(
-                child: Text('James Smith'),
-                decoration: BoxDecoration(color: Color(0xFF91BDF3)),
+              Container(
+                height: 200.0,
+                child: DrawerHeader(
+                  child: Column(
+                    children: [
+                      Container(
+                          height: 120.0,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100.00),
+                            child: Image.asset('images/user.jpg'),
+                          )),
+                      SizedBox(height: 10.0),
+                      Text('James Smith')
+                    ],
+                  ),
+                  decoration: BoxDecoration(color: Color(0xFF91BDF3)),
+                ),
               ),
               ListTile(
                 title: Text('Profile'),
@@ -39,11 +54,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
               ListTile(
                 title: Text('Discover'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExploreScreen()));
+                },
               ),
               ListTile(
                 title: Text('Sign Out'),
-                onTap: () {},
+                onTap: () {
+                  // TO DO: POP
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LandingPage()));
+                },
               )
             ],
           ),
@@ -144,6 +166,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       openAxisAlignment: 0.0,
       width: isPortrait ? 600 : 500,
       automaticallyImplyDrawerHamburger: false,
+      automaticallyImplyBackButton: false,
       debounceDelay: const Duration(milliseconds: 500),
       onQueryChanged: (query) {
         // Call your model, bloc, controller here.

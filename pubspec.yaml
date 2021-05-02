@@ -65,6 +65,8 @@ flutter:
     - images/dog5.jpg
     - images/dog6.jpg
     - assets/my-project.json
+    - images/logo.png
+    - images/user.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

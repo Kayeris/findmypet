@@ -1,4 +1,5 @@
 import 'package:findmypet/screens/explore.dart';
+import 'package:findmypet/screens/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExploreScreen(),
+      home: LandingPage(),
     );
   }
 }
