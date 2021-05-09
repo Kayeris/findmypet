@@ -1,3 +1,4 @@
+import 'package:findmypet/screens/addrecord.dart';
 import 'package:findmypet/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: AddRecordScreen(),
     );
   }
 }
